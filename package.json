@@ -1,0 +1,46 @@
+{
+  "name": "devs-core-insights",
+  "displayName": "Devs Core Insights",
+  "description": "Recent insights about Devs Core - A Sustainable Software Development Company",
+  "version": "0.0.1",
+  "publisher": "DevsCoreInsights",
+  "repository": {
+    "url": "https://github.com/AR-Ashraf/devs-core-insights"
+  },
+  "icon": "logo.png",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "devs-core-insights.searchDevsCoreInsights",
+        "title": "Search Devs Core Insights"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.6.1",
+    "fast-xml-parser": "^4.3.2"
+  }
+}
