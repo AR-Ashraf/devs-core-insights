@@ -1,15 +1,15 @@
 const vscode = require("vscode")
 const axios = require("axios")
-const xmlParser = require("fast-xml-parser")
+const {XMLParser} = require("fast-xml-parser")
 const https = require("https")
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 async function activate(context) {
-  https.globalAgent.options.rejectUnauthorized = false
-  const res = await axios.get("https://devs-core.com/feed")
-  const articles = xmlParser
+	https.globalAgent.options.rejectUnauthorized = false
+	const res = await axios.get("https://devs-core.com/feed")
+	const articles = new XMLParser()
     .parse(res.data)
     .rss.channel.item.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
     .map(article => {
@@ -23,6 +23,7 @@ async function activate(context) {
   let disposable = vscode.commands.registerCommand(
     "devs-core-insights.searchDevsCoreInsights",
     async function () {
+		
       const article = await vscode.window.showQuickPick(articles, {
         matchOnDetail: true,
       })
@@ -34,6 +35,7 @@ async function activate(context) {
   )
 
   context.subscriptions.push(disposable)
+
 }
 exports.activate = activate
 
